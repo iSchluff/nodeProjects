@@ -17,8 +17,7 @@ app.use(function(err, req, res, next){
 app.get("/", function(req, res){
   //console.log(req.query);
   var callback = function (json){
-    //res.type("json");
-    res.writeHead(200, {'Content-Type': 'application/json; charset=utf8'});
+    res.type("json");
     res.json(json);
     res.end();
   }
