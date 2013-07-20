@@ -21,13 +21,13 @@ exports.getCourses = function(callback){
         //Regex the Parts
         for(var i=0;i<arr.length;i++){
           var part=arr[i];
-          var name=part.match(/studiengang=.*(?=">)/)[0].replace(/studiengang=/,"").replace(/\+/g," ");
-          var short=part.match(/sgkurz=.*?(?=&amp;)/)[0].replace(/sgkurz=/,"").replace(/\_/," ");
-          var type=short.slice(short.length-2,short.length)=="MA"?"master":"bachelor";
+          var name=part.match(/studiengang=.*?">/)[0].slice(12,-2).replace(/\+/g," ");
+          var short=part.match(/sgkurz=.*?&amp;/)[0].slice(7,-5).replace(/\_/," ");
+          var type=short.slice(-2)=="MA"?"master":"bachelor";
           var semesters=part.match(/fs=.*?</g);
           for(var j=0; j<semesters.length; j++){
             var semester=semesters[j].split(">")[1]
-            semesters[j]=semester.slice(0,semester.length-1);
+            semesters[j]=semester.slice(0,-1);
           }
           
           //Build Course Object
@@ -74,8 +74,8 @@ exports.getEvents = function(shortName, semester, callback){
       var arr=string.split(/<p class="stupla_bold"/);
       for(var i=3; i<arr.length; i++){
         var part=arr[i];
-        var name=part.match(/>.*?(?= <a)/)[0].replace(/>/,"");
-        var lecturer=part.match(/Lesend.*?(?=<\/p>)/)[0].replace(/Lesende\(r\): /,"");
+        var name=part.match(/>.*? <a/)[0].slice(1,-3);
+        var lecturer=part.match(/Lesend.*?<\/p>/)[0].slice(12,-4);
         
         //split into types
         var typeArray=part.split(/scope="rowgroup"/);
@@ -86,23 +86,23 @@ exports.getEvents = function(shortName, semester, callback){
           for(x in eventArray){
             var eventString=eventArray[x];
             
-            var type=eventArray[x].match(/(Ü|\b)[\w \( \)]+(?=(:"|:<\/th>))/)[0];
-            
+            var type=eventArray[x].match(/(?=("10%">|axis=))\1.*?:/)[0];
+
             //Regex Table Cells
-            var details=eventArray[x].match(/\b[\w\s\b\.\-,\(\)]+(?=<\/td>)/g);
+            var details=eventArray[x].match(/(">|: )(?=([\w \b\.\-,\(\)]+))\2</g);
             if(details && details.length==6){
-              type=type.replace(/en/, "").replace(/ne/, "n").replace(/ka/,"kum");
+              type=type.slice(6,-1).replace(/en/, "").replace(/ne/, "n").replace(/ka/,"kum");
               
               var event={
                 name:name,
                 lecturer:lecturer,
                 type:type,
-                day:details[0],
-                date:details[1],
-                timespan:details[2],
-                location:details[3],
-                fs:details[4],
-                lastChanged:details[5]
+                day:details[0].slice(2,-1),
+                date:details[1].slice(2,-1),
+                timespan:details[2].slice(2,-1),
+                location:details[3].slice(2,-1),
+                fs:details[4].slice(2,-1),
+                lastChanged:details[5].slice(2,-1)
               }
               events.push(event);
             }
