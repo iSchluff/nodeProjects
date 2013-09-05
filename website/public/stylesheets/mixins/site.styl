@@ -1,0 +1,74 @@
+/**************************
+* Variables
+**************************/
+
+blue=#1c76b7
+green=#5ebd0c
+red=#e0572b
+textcol=#666
+barcol=#eee
+shadowcol=#ccc
+
+/**************************
+* Default
+**************************/
+
+html
+  width: 100%
+
+body
+  font-family: 'Source Sans Pro', sans-serif
+  color: textcol
+  width: 100%
+  
+header,
+footer
+  width: 100%
+  background: barcol
+  
+a
+  &:link, &:visited, &:hover, &:active
+    color: textcol
+
+/**************************
+* Desktop
+**************************/
+@media(min-width: 920px)
+  header
+    height: 60px
+    border-bottom: solid 4px shadowcol
+    
+    h1, ul
+      float: left
+      font-family: 'Ubuntu', sans-serif
+      font-weight: lighter
+      
+    h1
+      font-size: 2.7em
+      margin-left: 4%;
+      
+    ul
+      margin-left: 6%;
+      list-style: none
+      li
+        margin-left: 30px;
+        font-size: 1.5em
+        float: left
+        line-height: 60px
+
+          
+        &#home:hover, &#home.selected
+          border-bottom: 4px solid blue
+        &#experiments:hover, &#experiments.selected
+          border-bottom: 4px solid green
+        &#timetable:hover, &#timetable.selected
+          border-bottom: 4px solid red
+        
+  #main
+    max-height: 100%
+    overflow: hidden
+        
+  footer
+    position: absolute
+    bottom: 0px;
+    height: 40px;

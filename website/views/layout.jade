@@ -1,0 +1,21 @@
+doctype 5
+html
+  head
+    title= title
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Source+Sans+Pro|Ubuntu:300')
+    block head
+  body
+    header
+      h1 cookie-factory
+      ul
+        a(href='home')
+          li#home Home
+        a(href='experiments')
+          li#experiments Experiments
+        a(href='timetable')
+          li#timetable Timetable
+    #main
+      #left
+      block content
+      #right
+    footer

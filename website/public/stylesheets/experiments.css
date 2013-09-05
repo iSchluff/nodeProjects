@@ -1,0 +1,142 @@
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+article,
+aside,
+dialog,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+html {
+  width: 100%;
+}
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #666;
+  width: 100%;
+}
+header,
+footer {
+  width: 100%;
+  background: #eee;
+}
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: #666;
+}
+@media (min-width: 920px) {
+  header {
+    height: 60px;
+    border-bottom: solid 4px #ccc;
+  }
+  header h1,
+  header ul {
+    float: left;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: lighter;
+  }
+  header h1 {
+    font-size: 2.7em;
+    margin-left: 4%;
+  }
+  header ul {
+    margin-left: 6%;
+    list-style: none;
+  }
+  header ul li {
+    margin-left: 30px;
+    font-size: 1.5em;
+    float: left;
+    line-height: 60px;
+  }
+  header ul li#home:hover,
+  header ul li#home.selected {
+    border-bottom: 4px solid #1c76b7;
+  }
+  header ul li#experiments:hover,
+  header ul li#experiments.selected {
+    border-bottom: 4px solid #5ebd0c;
+  }
+  header ul li#timetable:hover,
+  header ul li#timetable.selected {
+    border-bottom: 4px solid #e0572b;
+  }
+  #main {
+    max-height: 100%;
+    overflow: hidden;
+  }
+  footer {
+    position: absolute;
+    bottom: 0px;
+    height: 40px;
+  }
+}
+header {
+  border-bottom: solid 4px #cef9a8;
+}
