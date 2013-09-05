@@ -20,6 +20,7 @@ app.get("/", function(req, res){
     res.type("json");
     res.json(json);
     res.end();
+    console.log(json.length);
   }
   if(req.query.short && req.query.fs){
     vlv.getEvents(req.query.short, req.query.fs, callback);
