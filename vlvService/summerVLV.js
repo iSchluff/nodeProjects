@@ -21,8 +21,8 @@ exports.getCourses = function(callback){
         //Regex the Parts
         for(var i=0;i<arr.length;i++){
           var part=arr[i];
-          var name=part.match(/studiengang=.*?">/)[0].slice(12,-2).replace(/\+/g," ");
-          var short=part.match(/sgkurz=.*?&amp;/)[0].slice(7,-5).replace(/\_/," ");
+          var name=part.match(/studiengang=(.*?)">/)[1].replace(/\+/g," ");
+          var short=part.match(/sgkurz=(.*?)&amp;/)[1].replace(/\_/," ");
           var type=short.slice(-2)=="MA"?"master":"bachelor";
           var semesters=part.match(/fs=.*?</g);
           for(var j=0; j<semesters.length; j++){
@@ -74,8 +74,9 @@ exports.getEvents = function(shortName, semester, callback){
       var arr=string.split(/<p class="stupla_bold"/);
       for(var i=3; i<arr.length; i++){
         var part=arr[i];
-        var name=part.match(/>.*? <a/)[0].slice(1,-3);
-        var lecturer=part.match(/Lesend.*?<\/p>/)[0].slice(12,-4);
+        var name=part.match(/>(.*?) <a/)[1];
+        var lecturer=part.match(/Lesende\(r\): (.*?)<\/p>/)[1];
+        
         
         //split into types
         var typeArray=part.split(/scope="rowgroup"/);
@@ -86,12 +87,12 @@ exports.getEvents = function(shortName, semester, callback){
           for(x in eventArray){
             var eventString=eventArray[x];
             
-            var type=eventArray[x].match(/(?=("10%">|axis=))\1.*?:/)[0];
+            var type=eventArray[x].match(/("10%">|axis=")(.*?):/)[2];
 
             //Regex Table Cells
             var details=eventArray[x].match(/(">|: )(?=([\w \b\.\-,\(\)]+))\2</g);
             if(details && details.length==6){
-              type=type.slice(6,-1).replace(/en/, "").replace(/ne/, "n").replace(/ka/,"kum");
+              type=type.replace(/en/, "").replace(/ne/, "n").replace(/ka/,"kum");
               
               var event={
                 name:name,
