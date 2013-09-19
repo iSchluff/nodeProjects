@@ -1,0 +1,8 @@
+{
+  "name": "proxy",
+  "description": "HTTP Proxy for redirecting subdomains",
+  "version": "0.0.1",
+  "dependencies": {
+    "http-proxy": "~0.10.3"
+  }
+}
