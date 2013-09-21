@@ -12,8 +12,8 @@ var options = {
 
 // bind to port 80 on the specified IP address
 try {
-  var s=httpProxy.createServer(options).listen(8080);
-  console.log('Proxy on Port 8080');
+  var s=httpProxy.createServer(options).listen(9000);
+  console.log('Proxy on Port 9000');
   s.on("error", function(err){
     console.log(err);
   })
