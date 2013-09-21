@@ -1,7 +1,7 @@
 var express = require("express");
 var app= express();
 
-var vlv= require("./vlv.js");
+var vlv= require("./winterVLV.js");
 
 app.set('port', process.env.PORT || 3000);
 //app.use(express.logger('dev'));
@@ -21,7 +21,7 @@ app.get("/", function(req, res){
     res.json(json);
     res.end();
     console.log(json.length);
-  }
+  };
   if(req.query.short && req.query.fs){
     vlv.getEvents(req.query.short, req.query.fs, callback);
   }else{
